@@ -1,47 +1,46 @@
 import React from 'react';
-import { Shield, Lock, Server } from 'lucide-react';
+import { Terminal, Shield, Lock } from 'lucide-react';
 
-export default function Hero() {
+export function Hero() {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-b from-black to-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="space-y-6">
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Securing Your Digital Future
-              <span className="text-cyan-500">.</span>
-            </h1>
-            <p className="text-xl text-gray-400">
-              Cybersecurity expert specializing in penetration testing, security auditing, and digital forensics.
-            </p>
-            <div className="flex space-x-4">
-              <button className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
-                View Projects
-              </button>
-              <button className="border border-cyan-500 text-cyan-500 hover:bg-cyan-500 hover:text-white px-6 py-3 rounded-lg font-medium transition duration-300">
-                Contact Me
-              </button>
+    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-black pt-16">
+      <div className="container mx-auto px-6 py-16 relative">
+        <div className="absolute inset-0 grid grid-cols-8 gap-8 opacity-5">
+          {Array.from({ length: 64 }).map((_, i) => (
+            <div key={i} className="text-green-500 font-mono text-xs">
+              {Math.random().toString(2).slice(2, 10)}
             </div>
+          ))}
+        </div>
+        
+        <div className="relative z-10 text-center">
+          <div className="flex justify-center space-x-4 mb-8">
+            <Terminal className="w-12 h-12 text-green-500 animate-pulse" />
+            <Shield className="w-12 h-12 text-green-500" />
+            <Lock className="w-12 h-12 text-green-500 animate-pulse" />
           </div>
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full blur-3xl opacity-20"></div>
-            <div className="relative grid grid-cols-2 gap-4">
-              <div className="bg-gray-800 p-6 rounded-lg">
-                <Shield className="h-8 w-8 text-cyan-500 mb-4" />
-                <h3 className="text-lg font-semibold mb-2">Security Auditing</h3>
-                <p className="text-gray-400">Comprehensive system analysis and vulnerability assessment</p>
-              </div>
-              <div className="bg-gray-800 p-6 rounded-lg mt-8">
-                <Lock className="h-8 w-8 text-cyan-500 mb-4" />
-                <h3 className="text-lg font-semibold mb-2">Penetration Testing</h3>
-                <p className="text-gray-400">Identifying and exploiting security weaknesses</p>
-              </div>
-              <div className="bg-gray-800 p-6 rounded-lg">
-                <Server className="h-8 w-8 text-cyan-500 mb-4" />
-                <h3 className="text-lg font-semibold mb-2">Network Security</h3>
-                <p className="text-gray-400">Protecting infrastructure from cyber threats</p>
-              </div>
-            </div>
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
+            Ethical Hacker & <br />
+            <span className="text-green-500">Security Researcher</span>
+          </h1>
+          <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
+            Exploring the depths of cybersecurity through ethical hacking, 
+            automation, and continuous learning. Committed to making the 
+            digital world a safer place.
+          </p>
+          <div className="flex justify-center space-x-4">
+            <a
+              href="#contact"
+              className="bg-green-500 text-black px-8 py-3 rounded-lg font-semibold hover:bg-green-400 transition-colors"
+            >
+              Get in Touch
+            </a>
+            <a
+              href="#projects"
+              className="border border-green-500 text-green-500 px-8 py-3 rounded-lg font-semibold hover:bg-green-500 hover:text-black transition-colors"
+            >
+              View Projects
+            </a>
           </div>
         </div>
       </div>

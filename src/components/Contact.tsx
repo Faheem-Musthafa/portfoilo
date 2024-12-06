@@ -1,63 +1,121 @@
-import React from 'react';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, Linkedin, Github, Twitter } from 'lucide-react';
 
-export default function Contact() {
+export function Contact() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle form submission
+    console.log('Form submitted:', formData);
+  };
+
   return (
-    <section id="contact" className="py-20 bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Get in Touch</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Let's discuss how we can secure your digital assets
-          </p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="space-y-8">
-            <div className="flex items-start space-x-4">
-              <Mail className="h-6 w-6 text-cyan-500 mt-1" />
-              <div>
-                <h3 className="text-white font-semibold mb-1">Email</h3>
-                <p className="text-gray-400">faheemcp241@gmail.com</p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-4">
-              <Phone className="h-6 w-6 text-cyan-500 mt-1" />
-              <div>
-                <h3 className="text-white font-semibold mb-1">Phone</h3>
-                <p className="text-gray-400">+91 97465 68080</p>
-              </div>
-            </div>
-            <div className="flex items-start space-x-4">
-              <MapPin className="h-6 w-6 text-cyan-500 mt-1" />
-              <div>
-                <h3 className="text-white font-semibold mb-1">Location</h3>
-                <p className="text-gray-400">Malappuram , IN</p>
-              </div>
+    <section id="contact" className="py-20 bg-black">
+      <div className="container mx-auto px-6">
+        <h2 className="text-3xl font-bold text-white mb-12 text-center">
+          Get in Touch
+        </h2>
+        
+        <div className="grid md:grid-cols-2 gap-12">
+          <div>
+            <h3 className="text-xl font-semibold text-white mb-6">
+              Let's Connect
+            </h3>
+            <p className="text-gray-400 mb-8">
+              Whether you're interested in collaboration, have a security concern,
+              or just want to chat about cybersecurity, I'd love to hear from you.
+            </p>
+            
+            <div className="space-y-4">
+              {[
+                {
+                  icon: <Linkedin className="w-6 h-6" />,
+                  label: 'LinkedIn',
+                  href: '#',
+                },
+                {
+                  icon: <Github className="w-6 h-6" />,
+                  label: 'GitHub',
+                  href: '#',
+                },
+                {
+                  icon: <Twitter className="w-6 h-6" />,
+                  label: 'Twitter',
+                  href: '#',
+                },
+                {
+                  icon: <Mail className="w-6 h-6" />,
+                  label: 'Email',
+                  href: 'mailto:contact@example.com',
+                },
+              ].map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  className="flex items-center text-gray-400 hover:text-green-500 transition-colors"
+                >
+                  {social.icon}
+                  <span className="ml-4">{social.label}</span>
+                </a>
+              ))}
             </div>
           </div>
-          <form className="space-y-6">
+          
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
+              <label htmlFor="name" className="block text-gray-400 mb-2">
+                Name
+              </label>
               <input
                 type="text"
-                placeholder="Your Name"
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-cyan-500 text-white"
+                id="name"
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+                className="w-full bg-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                required
               />
             </div>
             <div>
+              <label htmlFor="email" className="block text-gray-400 mb-2">
+                Email
+              </label>
               <input
                 type="email"
-                placeholder="Your Email"
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-cyan-500 text-white"
+                id="email"
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
+                className="w-full bg-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                required
               />
             </div>
             <div>
+              <label htmlFor="message" className="block text-gray-400 mb-2">
+                Message
+              </label>
               <textarea
+                id="message"
+                value={formData.message}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
                 rows={4}
-                placeholder="Your Message"
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-cyan-500 text-white"
-              ></textarea>
+                className="w-full bg-gray-800 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
+                required
+              />
             </div>
-            <button className="w-full bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+            <button
+              type="submit"
+              className="w-full bg-green-500 text-black py-3 rounded-lg font-semibold hover:bg-green-400 transition-colors"
+            >
               Send Message
             </button>
           </form>
